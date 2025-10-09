@@ -1,0 +1,5 @@
+# ads.txt file for New Bright Notes
+# This file authorizes Google AdSense to sell advertising on this website
+
+# Google AdSense
+google.com, pub-6026700286776312, DIRECT, f08c47fec0942fa0

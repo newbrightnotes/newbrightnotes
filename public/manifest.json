@@ -1,0 +1,29 @@
+{
+  "name": "New Bright Notes",
+  "short_name": "Bright Notes",
+  "description": "Seu guia completo sobre jardins verticais e jardinagem urbana",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2c3e50",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/cropped-LOGOTIPO-2.png",
+      "sizes": "150x49",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/cropped-LOGOTIPO-2.png",
+      "sizes": "150x49",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["lifestyle", "education", "gardening"],
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}
