@@ -20,7 +20,8 @@ export async function generateStaticParams() {
 
 // Generate metadata for each post
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
-  const post = posts.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const post = posts.find((p) => p.slug === slug);
 
   if (!post) {
     return {
@@ -81,8 +82,9 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
   };
 }
 
-export default function PostPage({ params }: PostPageProps) {
-  const post = posts.find((p) => p.slug === params.slug);
+export default async function PostPage({ params }: PostPageProps) {
+  const { slug } = await params;
+  const post = posts.find((p) => p.slug === slug);
 
   if (!post) {
     notFound();
@@ -262,7 +264,7 @@ export default function PostPage({ params }: PostPageProps) {
                         rel="noopener noreferrer" 
                         aria-label="Compartilhar no Facebook"
                       >
-                        <span>f</span>
+                        <span className="fa fa-facebook"></span>
                       </a>
                       <a 
                         href={`https://twitter.com/intent/tweet?url=${postUrl}&text=${encodeURIComponent(post.title)}`}
@@ -270,7 +272,7 @@ export default function PostPage({ params }: PostPageProps) {
                         rel="noopener noreferrer" 
                         aria-label="Compartilhar no Twitter"
                       >
-                        <span>𝕏</span>
+                        <span className="fa fa-twitter"></span>
                       </a>
                       <a 
                         href={`https://www.linkedin.com/shareArticle?mini=true&url=${postUrl}&title=${encodeURIComponent(post.title)}`}
@@ -278,7 +280,7 @@ export default function PostPage({ params }: PostPageProps) {
                         rel="noopener noreferrer" 
                         aria-label="Compartilhar no LinkedIn"
                       >
-                        <span>in</span>
+                        <span className="fa fa-linkedin"></span>
                       </a>
                       <a 
                         href={`https://pinterest.com/pin/create/button/?url=${postUrl}&description=${encodeURIComponent(post.title)}`}
@@ -286,7 +288,7 @@ export default function PostPage({ params }: PostPageProps) {
                         rel="noopener noreferrer" 
                         aria-label="Compartilhar no Pinterest"
                       >
-                        <span>P</span>
+                        <span className="fa fa-pinterest-p"></span>
                       </a>
                     </div>
                   </div>

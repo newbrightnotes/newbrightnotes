@@ -39,7 +39,8 @@ export async function generateStaticParams() {
 
 // Generate metadata for each category
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const category = categories.find((c) => c.slug === params.slug);
+  const { slug } = await params;
+  const category = categories.find((c) => c.slug === slug);
 
   if (!category) {
     return {
@@ -84,15 +85,16 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   };
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const category = categories.find((c) => c.slug === params.slug);
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = await params;
+  const category = categories.find((c) => c.slug === slug);
 
   if (!category) {
     notFound();
   }
 
   // Filter posts by category
-  const categoryPosts = posts.filter((post) => post.categorySlug === params.slug);
+  const categoryPosts = posts.filter((post) => post.categorySlug === slug);
 
   const siteUrl = "https://newbrightnotes.com";
   const categoryUrl = `${siteUrl}/category/${category.slug}`;
@@ -247,7 +249,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                                   rel="noopener noreferrer"
                                   aria-label="Share on Facebook"
                                 >
-                                  <span>f</span>
+                                  <span className="fa fa-facebook"></span>
                                 </a>
                                 <a
                                   href={`https://twitter.com/intent/tweet?url=https://newbrightnotes.com/posts/${post.slug}&text=${encodeURIComponent(
@@ -257,7 +259,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                                   rel="noopener noreferrer"
                                   aria-label="Share on Twitter"
                                 >
-                                  <span>𝕏</span>
+                                  <span className="fa fa-twitter"></span>
                                 </a>
                                 <a
                                   href={`https://www.linkedin.com/shareArticle?mini=true&url=https://newbrightnotes.com/posts/${post.slug}&title=${encodeURIComponent(
@@ -267,7 +269,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                                   rel="noopener noreferrer"
                                   aria-label="Share on LinkedIn"
                                 >
-                                  <span>in</span>
+                                  <span className="fa fa-linkedin"></span>
                                 </a>
                                 <a
                                   href={`https://pinterest.com/pin/create/button/?url=https://newbrightnotes.com/posts/${post.slug}&description=${encodeURIComponent(
@@ -277,7 +279,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                                   rel="noopener noreferrer"
                                   aria-label="Share on Pinterest"
                                 >
-                                  <span>P</span>
+                                  <span className="fa fa-pinterest-p"></span>
                                 </a>
                               </div>
                             </div>
