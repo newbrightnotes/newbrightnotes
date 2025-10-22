@@ -3,12 +3,38 @@ export interface Post {
     slug: string;
     title: string;
     excerpt: string;
+    content?: string;
     image: string;
     category: string;
     categorySlug: string;
     author: string;
+    authorSlug: string;
     date: string;
+    tags: string[];
+    featured?: boolean;
+    views?: number;
 }
+
+export interface Category {
+    slug: string;
+    name: string;
+    description: string;
+    image?: string;
+}
+
+export interface Author {
+    slug: string;
+    name: string;
+    bio: string;
+    image?: string;
+    social?: {
+        facebook?: string;
+        twitter?: string;
+        instagram?: string;
+    };
+}
+
+export const POSTS_PER_PAGE = 6;
 
 export const posts: Post[] = [
     {
@@ -20,7 +46,11 @@ export const posts: Post[] = [
         category: "Jardinagem Vertical Comestível",
         categorySlug: "jardinagem-vertical-comestivel",
         author: "Leandro Guimarães",
-        date: "segunda-feira, maio 19, 2025"
+        authorSlug: "leandro-guimaraes",
+        date: "segunda-feira, maio 19, 2025",
+        tags: ["legumes", "cultivo vertical", "horta urbana", "apartamento"],
+        featured: true,
+        views: 1250
     },
     {
         id: 2,
@@ -31,7 +61,11 @@ export const posts: Post[] = [
         category: "Jardinagem Vertical Comestível",
         categorySlug: "jardinagem-vertical-comestivel",
         author: "Leandro Guimarães",
-        date: "segunda-feira, maio 19, 2025"
+        authorSlug: "leandro-guimaraes",
+        date: "segunda-feira, maio 19, 2025",
+        tags: ["morangos", "frutas", "cultivo vertical", "apartamento"],
+        featured: true,
+        views: 980
     },
     {
         id: 3,
@@ -42,7 +76,10 @@ export const posts: Post[] = [
         category: "Jardinagem Vertical Comestível",
         categorySlug: "jardinagem-vertical-comestivel",
         author: "Leandro Guimarães",
-        date: "segunda-feira, maio 19, 2025"
+        authorSlug: "leandro-guimaraes",
+        date: "segunda-feira, maio 19, 2025",
+        tags: ["rotação de cultivos", "manutenção", "solo", "pragas"],
+        views: 756
     },
     {
         id: 4,
@@ -53,7 +90,11 @@ export const posts: Post[] = [
         category: "Jardinagem Vertical Comestível",
         categorySlug: "jardinagem-vertical-comestivel",
         author: "Leandro Guimarães",
-        date: "sexta-feira, maio 2, 2025"
+        authorSlug: "leandro-guimaraes",
+        date: "sexta-feira, maio 2, 2025",
+        tags: ["temperos", "ervas", "cozinha", "apartamento"],
+        featured: false,
+        views: 1120
     },
     {
         id: 5,
@@ -64,7 +105,10 @@ export const posts: Post[] = [
         category: "Jardinagem Vertical Comestível",
         categorySlug: "jardinagem-vertical-comestivel",
         author: "Leandro Guimarães",
-        date: "quinta-feira, maio 1, 2025"
+        authorSlug: "leandro-guimaraes",
+        date: "quinta-feira, maio 1, 2025",
+        tags: ["ervas aromáticas", "espaços pequenos", "horta vertical"],
+        views: 890
     },
     {
         id: 6,
@@ -75,7 +119,10 @@ export const posts: Post[] = [
         category: "Jardinagem Vertical Comestível",
         categorySlug: "jardinagem-vertical-comestivel",
         author: "Leandro Guimarães",
-        date: "quarta-feira, abril 30, 2025"
+        authorSlug: "leandro-guimaraes",
+        date: "quarta-feira, abril 30, 2025",
+        tags: ["ambientes internos", "horta vertical", "cuidados"],
+        views: 1050
     },
     {
         id: 7,
@@ -86,7 +133,10 @@ export const posts: Post[] = [
         category: "Jardinagem Vertical Comestível",
         categorySlug: "jardinagem-vertical-comestivel",
         author: "Leandro Guimarães",
-        date: "terça-feira, abril 29, 2025"
+        authorSlug: "leandro-guimaraes",
+        date: "terça-feira, abril 29, 2025",
+        tags: ["manjericão", "alecrim", "hortelã", "temperos"],
+        views: 1340
     },
     {
         id: 8,
@@ -97,7 +147,10 @@ export const posts: Post[] = [
         category: "Jardinagem Vertical Comestível",
         categorySlug: "jardinagem-vertical-comestivel",
         author: "Leandro Guimarães",
-        date: "segunda-feira, abril 28, 2025"
+        authorSlug: "leandro-guimaraes",
+        date: "segunda-feira, abril 28, 2025",
+        tags: ["alface", "rúcula", "cebolinha", "hortaliças"],
+        views: 820
     },
     {
         id: 9,
@@ -108,7 +161,10 @@ export const posts: Post[] = [
         category: "Jardinagem Vertical Comestível",
         categorySlug: "jardinagem-vertical-comestivel",
         author: "Leandro Guimarães",
-        date: "domingo, abril 27, 2025"
+        authorSlug: "leandro-guimaraes",
+        date: "domingo, abril 27, 2025",
+        tags: ["DIY", "reciclagem", "sustentabilidade", "materiais reciclados"],
+        views: 1450
     },
     {
         id: 10,
@@ -119,6 +175,100 @@ export const posts: Post[] = [
         category: "Jardinagem Vertical Comestível",
         categorySlug: "jardinagem-vertical-comestivel",
         author: "Leandro Guimarães",
-        date: "sábado, abril 26, 2025"
+        authorSlug: "leandro-guimaraes",
+        date: "sábado, abril 26, 2025",
+        tags: ["ervas aromáticas", "culinária", "uso diário"],
+        views: 990
     }
 ];
+
+export const categories: Category[] = [
+    {
+        slug: "jardinagem-vertical-comestivel",
+        name: "Jardinagem Vertical Comestível",
+        description: "Descubra como cultivar alimentos frescos em espaços verticais, aproveite ao máximo sua varanda ou parede para ter uma horta produtiva em casa.",
+        image: "/images/IMG_ARTIGO_31.webp"
+    },
+    {
+        slug: "cuidados-e-manutencao",
+        name: "Cuidados e Manutenção",
+        description: "Aprenda as melhores práticas para cuidar do seu jardim vertical, mantendo suas plantas saudáveis e bonitas durante todo o ano.",
+        image: "/images/IMG_ARTIGO_29.webp"
+    },
+    {
+        slug: "tipos-de-jardins-verticais",
+        name: "Tipos de Jardins Verticais",
+        description: "Explore diferentes estilos e estruturas de jardins verticais, encontre a solução perfeita para o seu espaço e estilo.",
+        image: "/images/IMG_ARTIGO-27.webp"
+    }
+];
+
+export const authors: Author[] = [
+    {
+        slug: "leandro-guimaraes",
+        name: "Leandro Guimarães",
+        bio: "Especialista em jardinagem urbana e cultivo vertical com mais de 10 anos de experiência. Apaixonado por transformar espaços urbanos em oásis verdes e sustentáveis.",
+        image: "/images/author-leandro.jpg",
+        social: {
+            facebook: "https://www.facebook.com/newbrightnotes",
+            twitter: "https://twitter.com/newbrightnotes",
+            instagram: "https://www.instagram.com/newbrightnotes"
+        }
+    }
+];
+
+// Utility functions
+export function getPostsByPage(page: number, postsPerPage: number = POSTS_PER_PAGE): Post[] {
+    const start = (page - 1) * postsPerPage;
+    const end = start + postsPerPage;
+    return posts.slice(start, end);
+}
+
+export function getTotalPages(postsPerPage: number = POSTS_PER_PAGE): number {
+    return Math.ceil(posts.length / postsPerPage);
+}
+
+export function getPostsByCategory(categorySlug: string, page: number = 1, postsPerPage: number = POSTS_PER_PAGE) {
+    const categoryPosts = posts.filter(post => post.categorySlug === categorySlug);
+    const start = (page - 1) * postsPerPage;
+    const end = start + postsPerPage;
+    return {
+        posts: categoryPosts.slice(start, end),
+        totalPages: Math.ceil(categoryPosts.length / postsPerPage),
+        totalPosts: categoryPosts.length
+    };
+}
+
+export function getPostsByAuthor(authorSlug: string): Post[] {
+    return posts.filter(post => post.authorSlug === authorSlug);
+}
+
+export function getPostsByTag(tag: string): Post[] {
+    return posts.filter(post => post.tags.includes(tag));
+}
+
+export function getFeaturedPosts(limit: number = 5): Post[] {
+    return posts.filter(post => post.featured).slice(0, limit);
+}
+
+export function getPopularPosts(limit: number = 5): Post[] {
+    return [...posts].sort((a, b) => (b.views || 0) - (a.views || 0)).slice(0, limit);
+}
+
+export function getRelatedPosts(currentPost: Post, limit: number = 3): Post[] {
+    return posts
+        .filter(post => 
+            post.id !== currentPost.id && 
+            (post.categorySlug === currentPost.categorySlug || 
+             post.tags.some(tag => currentPost.tags.includes(tag)))
+        )
+        .slice(0, limit);
+}
+
+export function getAllTags(): string[] {
+    const tagsSet = new Set<string>();
+    posts.forEach(post => {
+        post.tags.forEach(tag => tagsSet.add(tag));
+    });
+    return Array.from(tagsSet).sort();
+}

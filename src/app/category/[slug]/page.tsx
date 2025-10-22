@@ -2,34 +2,20 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { posts } from "@/data/posts";
+import { categories, getPostsByCategory } from "@/data/posts";
+import Pagination from "@/components/Pagination";
 import Script from "next/script";
 
 interface CategoryPageProps {
   params: {
     slug: string;
   };
+  searchParams?: {
+    page?: string;
+  };
 }
 
 // Define all categories
-const categories = [
-  {
-    slug: "jardinagem-vertical-comestivel",
-    name: "Jardinagem Vertical Comestível",
-    description: "Descubra como cultivar alimentos frescos em espaços verticais, aproveite ao máximo sua varanda ou parede para ter uma horta produtiva em casa.",
-  },
-  {
-    slug: "cuidados-e-manutencao",
-    name: "Cuidados e Manutenção",
-    description: "Aprenda as melhores práticas para cuidar do seu jardim vertical, mantendo suas plantas saudáveis e bonitas durante todo o ano.",
-  },
-  {
-    slug: "tipos-de-jardins-verticais",
-    name: "Tipos de Jardins Verticais",
-    description: "Explore diferentes estilos e estruturas de jardins verticais, encontre a solução perfeita para o seu espaço e estilo.",
-  },
-];
-
 // Generate static params for all categories
 export async function generateStaticParams() {
   return categories.map((category) => ({
@@ -85,7 +71,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   };
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
   const { slug } = await params;
   const category = categories.find((c) => c.slug === slug);
 
@@ -93,8 +79,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     notFound();
   }
 
-  // Filter posts by category
-  const categoryPosts = posts.filter((post) => post.categorySlug === slug);
+  // Get page number from search params
+  const sp = await searchParams;
+  const pageNumber = parseInt(sp?.page || "1");
+  
+  // Filter posts by category with pagination
+  const { posts: categoryPosts, totalPages, totalPosts } = getPostsByCategory(slug, pageNumber);
 
   const siteUrl = "https://newbrightnotes.com";
   const categoryUrl = `${siteUrl}/category/${category.slug}`;
@@ -174,6 +164,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               <header className="category-header" style={{ marginBottom: '3rem' }}>
                 <h1 className="category-title">{category.name}</h1>
                 <p className="category-description">{category.description}</p>
+                <p style={{ marginTop: '1rem', color: '#666' }}>
+                  {totalPosts} {totalPosts === 1 ? 'artigo' : 'artigos'} encontrados
+                </p>
               </header>
 
               {/* Posts Grid */}
@@ -203,7 +196,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                               <span className="entry-author">
                                 By{" "}
                                 <Link
-                                  href="/author"
+                                  href={`/author/${post.authorSlug}`}
                                   title={`Posts de ${post.author}`}
                                   rel="author"
                                 >
@@ -290,6 +283,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   ))
                 )}
               </div>
+              {totalPages > 1 && (
+                <Pagination 
+                  currentPage={pageNumber} 
+                  totalPages={totalPages} 
+                  basePath={`/category/${slug}`} 
+                />
+              )}
             </div>
           </div>
         </div>

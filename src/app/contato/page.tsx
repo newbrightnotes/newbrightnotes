@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contato",
@@ -24,7 +25,9 @@ export default function ContactPage() {
                   Adoraríamos ouvir de você!
                 </p>
                 
-                <h2>Entre em Contato</h2>
+                <ContactForm />
+                
+                <h2 style={{ marginTop: '3rem' }}>Outras Formas de Contato</h2>
                 <p>
                   <strong>Email:</strong> contato@newbrightnotes.com
                 </p>

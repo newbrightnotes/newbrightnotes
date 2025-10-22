@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { posts } from '@/data/posts'
+import { posts, categories, authors, getAllTags, getTotalPages } from '@/data/posts'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = 'https://newbrightnotes.com'
@@ -25,6 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/search`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    },
+    {
       url: `${siteUrl}/politica-de-privacidade`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
@@ -44,15 +50,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Category pages
-  const categories = [
-    'jardinagem-vertical-comestivel',
-    'cuidados-e-manutencao',
-    'tipos-de-jardins-verticais',
-  ]
+  // Pagination pages
+  const totalPages = getTotalPages();
+  const paginationPages = Array.from({ length: totalPages - 1 }, (_, i) => ({
+    url: `${siteUrl}/page/${i + 2}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.7,
+  }))
 
+  // Category pages
   const categoryPages = categories.map((category) => ({
-    url: `${siteUrl}/category/${category}`,
+    url: `${siteUrl}/category/${category.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.9,
@@ -66,5 +75,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...categoryPages, ...postPages]
+  // Author pages
+  const authorPages = authors.map((author) => ({
+    url: `${siteUrl}/author/${author.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }))
+
+  // Tag pages
+  const allTags = getAllTags();
+  const tagPages = allTags.map((tag) => ({
+    url: `${siteUrl}/tag/${encodeURIComponent(tag)}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.5,
+  }))
+
+  return [...staticPages, ...paginationPages, ...categoryPages, ...postPages, ...authorPages, ...tagPages]
 }

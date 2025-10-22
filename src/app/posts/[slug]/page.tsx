@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { posts } from "@/data/posts";
+import { posts, getRelatedPosts } from "@/data/posts";
 import Script from "next/script";
 
 interface PostPageProps {
@@ -93,6 +93,9 @@ export default async function PostPage({ params }: PostPageProps) {
   const siteUrl = "https://newbrightnotes.com";
   const postUrl = `${siteUrl}/posts/${post.slug}`;
   const imageUrl = `${siteUrl}${post.image}`;
+
+  // Get related posts
+  const relatedPosts = getRelatedPosts(post, 3);
 
   // JSON-LD structured data for Article
   const articleStructuredData = {
@@ -197,7 +200,7 @@ export default async function PostPage({ params }: PostPageProps) {
                   <h1 className="entry-title">{post.title}</h1>
                   <div className="entry-meta">
                     <span className="entry-author">
-                      By <Link href="/author" title={`Posts de ${post.author}`} rel="author">
+                      By <Link href={`/author/${post.authorSlug}`} title={`Posts de ${post.author}`} rel="author">
                         {post.author}
                       </Link>
                     </span>
@@ -299,23 +302,20 @@ export default async function PostPage({ params }: PostPageProps) {
               <section className="related-posts" style={{ marginTop: '3rem' }}>
                 <h2>Artigos Relacionados</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
-                  {posts
-                    .filter((p) => p.categorySlug === post.categorySlug && p.id !== post.id)
-                    .slice(0, 3)
-                    .map((relatedPost) => (
-                      <article key={relatedPost.id} className="related-post-card">
-                        <Link href={`/posts/${relatedPost.slug}`}>
-                          <Image
-                            width={300}
-                            height={200}
-                            src={relatedPost.image}
-                            alt={relatedPost.title}
-                            style={{ width: '100%', height: 'auto' }}
-                          />
-                          <h3>{relatedPost.title}</h3>
-                        </Link>
-                      </article>
-                    ))}
+                  {relatedPosts.map((relatedPost) => (
+                    <article key={relatedPost.id} className="related-post-card">
+                      <Link href={`/posts/${relatedPost.slug}`}>
+                        <Image
+                          width={300}
+                          height={200}
+                          src={relatedPost.image}
+                          alt={relatedPost.title}
+                          style={{ width: '100%', height: 'auto' }}
+                        />
+                        <h3>{relatedPost.title}</h3>
+                      </Link>
+                    </article>
+                  ))}
                 </div>
               </section>
             </div>

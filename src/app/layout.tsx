@@ -5,6 +5,7 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./globals.css";
+import MobileNav from "@/components/MobileNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -159,6 +160,8 @@ export default function RootLayout({
           }}
         />
 
+        <MobileNav />
+        
         <div className="site-mobile-navigation"></div>
         <div className="site-wrapper shadow-wrapper">
           {/* Header */}

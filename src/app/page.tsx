@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { posts } from "@/data/posts";
+import { posts, getPostsByPage, getTotalPages, POSTS_PER_PAGE } from "@/data/posts";
 import BannerCarousel from "@/components/BannerCarousel";
+import Pagination from "@/components/Pagination";
+import Sidebar from "@/components/Sidebar";
 
 export default function Home() {
   const carouselPosts = posts.slice(0, 5);
-  const gridPosts = posts;
+  const gridPosts = getPostsByPage(1, POSTS_PER_PAGE);
+  const totalPages = getTotalPages();
 
   return (
     <>
@@ -36,7 +39,7 @@ export default function Home() {
                         </h2>
                         <div className="entry-meta">
                           <span className="entry-author">
-                            By <Link href="/author" title={`Posts de ${post.author}`} rel="author">
+                            By <Link href={`/author/${post.authorSlug}`} title={`Posts de ${post.author}`} rel="author">
                               {post.author}
                             </Link>
                           </span>
@@ -95,19 +98,9 @@ export default function Home() {
                   </div>
                 </article>
               ))}
-              <nav className="navigation pagination" aria-label="Paginação de posts">
-                <h2 className="screen-reader-text">Paginação de posts</h2>
-                <div className="nav-links">
-                  <span aria-current="page" className="page-numbers current">1</span>
-                  <Link className="page-numbers" href="/page/2">2</Link>
-                  <Link className="page-numbers" href="/page/3">3</Link>
-                  <Link className="page-numbers" href="/page/4">4</Link>
-                  <Link className="next page-numbers" href="/page/2">Next &rarr;</Link>
-                </div>
-              </nav>
+              <Pagination currentPage={1} totalPages={totalPages} basePath="" />
             </div>
-            <div className="site-sidebar" id="sidebar" role="complementary">
-            </div>
+            <Sidebar />
           </div>
         </div>
       </section>
