@@ -396,40 +396,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
                 <footer className="entry-footer">
                   <div className="entry-footer-top">
-                    <div className="entry-social-share">
-                      <a 
-                        href={`https://www.facebook.com/sharer/sharer.php?u=${postUrl}`}
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        aria-label="Compartilhar no Facebook"
-                      >
-                        <span className="fa fa-facebook"></span>
-                      </a>
-                      <a 
-                        href={`https://twitter.com/intent/tweet?url=${postUrl}&text=${encodeURIComponent(post.title)}`}
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        aria-label="Compartilhar no Twitter"
-                      >
-                        <span className="fa fa-twitter"></span>
-                      </a>
-                      <a 
-                        href={`https://www.linkedin.com/shareArticle?mini=true&url=${postUrl}&title=${encodeURIComponent(post.title)}`}
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        aria-label="Compartilhar no LinkedIn"
-                      >
-                        <span className="fa fa-linkedin"></span>
-                      </a>
-                      <a 
-                        href={`https://pinterest.com/pin/create/button/?url=${postUrl}&description=${encodeURIComponent(post.title)}`}
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        aria-label="Compartilhar no Pinterest"
-                      >
-                        <span className="fa fa-pinterest-p"></span>
-                      </a>
-                    </div>
+                    {/* Social share removed - no active social media accounts */}
                   </div>
                 </footer>
               </article>

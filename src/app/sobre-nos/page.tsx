@@ -94,8 +94,7 @@ export default function AboutPage() {
                   jornada de jardinagem vertical.
                 </p>
                 <p>
-                  <strong>Email:</strong> contato@newbrightnotes.com<br/>
-                  <strong>Redes Sociais:</strong> Siga-nos no Facebook, Instagram e Pinterest para dicas diárias
+                  <strong>Email:</strong> contato@newbrightnotes.com
                 </p>
                 
                 <h2>Compromisso com a Qualidade</h2>

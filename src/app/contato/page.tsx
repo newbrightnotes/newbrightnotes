@@ -32,17 +32,6 @@ export default function ContactPage() {
                   <strong>Email:</strong> contato@newbrightnotes.com
                 </p>
                 
-                <h2>Redes Sociais</h2>
-                <p>
-                  Siga-nos nas redes sociais para ficar por dentro das novidades, dicas diárias 
-                  e inspirações sobre jardinagem vertical:
-                </p>
-                <ul>
-                  <li>Facebook</li>
-                  <li>Instagram</li>
-                  <li>Pinterest</li>
-                </ul>
-                
                 <h2>Perguntas Frequentes</h2>
                 <p>
                   Antes de entrar em contato, que tal conferir nossas seções de artigos? 

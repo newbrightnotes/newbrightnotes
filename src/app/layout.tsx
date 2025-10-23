@@ -107,11 +107,6 @@ export default function RootLayout({
     url: siteUrl,
     logo: `${siteUrl}/images/cropped-LOGOTIPO-2.png`,
     description: "Seu guia completo sobre jardins verticais e jardinagem urbana",
-    sameAs: [
-      "https://www.facebook.com/newbrightnotes",
-      "https://twitter.com/newbrightnotes",
-      "https://www.pinterest.com/newbrightnotes",
-    ],
     contactPoint: {
       "@type": "ContactPoint",
       email: "contato@newbrightnotes.com",
