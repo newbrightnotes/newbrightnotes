@@ -56,6 +56,22 @@ export default function PrivacyPolicyPage() {
                   exibição de anúncios. Essas ferramentas podem coletar informações sobre sua 
                   visita ao site conforme suas respectivas políticas de privacidade.
                 </p>
+                <h3>Google Analytics</h3>
+                <p>
+                  O Google Analytics coleta informações anônimas sobre como os visitantes usam nosso site, 
+                  incluindo páginas visitadas, tempo de permanência e origem do tráfego. Essas informações 
+                  nos ajudam a melhorar o conteúdo e a experiência do usuário.
+                </p>
+                <h3>Google AdSense</h3>
+                <p>
+                  O Google AdSense usa cookies para exibir anúncios relevantes com base em suas visitas 
+                  anteriores ao nosso site e outros sites. Você pode optar por não receber anúncios 
+                  personalizados visitando as Configurações de Anúncios do Google.
+                </p>
+                <p>
+                  Para mais informações sobre como o Google usa dados quando você usa nosso site, 
+                  visite: www.google.com/policies/privacy/partners/
+                </p>
 
                 <h2>5. Compartilhamento de Informações</h2>
                 <p>

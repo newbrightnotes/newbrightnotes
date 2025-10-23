@@ -6,6 +6,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./globals.css";
 import MobileNav from "@/components/MobileNav";
+import CookieConsent from "@/components/CookieConsent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,13 +19,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://newbrightnotes.com'),
   title: {
-    default: "New Bright Notes",
+    default: "New Bright Notes - Jardins Verticais e Jardinagem Urbana",
     template: "%s | New Bright Notes",
   },
-  description: "Explore our collection of articles on gardening, sustainability, and urban living.",
-  keywords: ["jardins verticais", "legumes", "cultivo vertical", "horticultura urbana", "alimentos frescos", "sustentabilidade"],
-  authors: [{ name: "New Bright Notes" }],
+  description: "Aprenda a criar jardins verticais comestíveis em apartamentos. Dicas práticas de cultivo urbano, hortas em varandas e paredes. Guia completo de jardinagem vertical sustentável.",
+  keywords: [
+    "jardim vertical",
+    "horta urbana",
+    "cultivo em apartamento",
+    "plantas comestíveis",
+    "jardinagem vertical",
+    "legumes verticais",
+    "horticultura urbana",
+    "sustentabilidade",
+    "jardim comestível",
+    "horta em casa"
+  ],
+  authors: [{ name: "New Bright Notes", url: "https://newbrightnotes.com/sobre-nos" }],
   creator: "New Bright Notes",
   publisher: "New Bright Notes",
   manifest: "/manifest.json",
@@ -44,13 +57,23 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "https://newbrightnotes.com",
     siteName: "New Bright Notes",
-    title: "New Bright Notes",
-    description: "Seu guia completo sobre jardins verticais e jardinagem urbana",
+    title: "New Bright Notes - Jardins Verticais e Jardinagem Urbana",
+    description: "Aprenda a criar jardins verticais comestíveis em apartamentos. Dicas práticas de cultivo urbano, hortas em varandas e paredes.",
+    images: [
+      {
+        url: "/images/cropped-LOGOTIPO-2.png",
+        width: 1200,
+        height: 630,
+        alt: "New Bright Notes - Jardins Verticais",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "New Bright Notes",
-    description: "Seu guia completo sobre jardins verticais e jardinagem urbana",
+    title: "New Bright Notes - Jardins Verticais e Jardinagem Urbana",
+    description: "Aprenda a criar jardins verticais comestíveis em apartamentos. Dicas práticas de cultivo urbano, hortas em varandas e paredes.",
+    creator: "@newbrightnotes",
+    images: ["/images/cropped-LOGOTIPO-2.png"],
   },
   verification: {
     google: "SyRIBZUdMgwdfPAOEzd9nDkDLUZxouobkKWxV14SeJ8",
@@ -60,6 +83,13 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "New Bright Notes",
   },
+  alternates: {
+    canonical: "https://newbrightnotes.com",
+    types: {
+      'application/rss+xml': 'https://newbrightnotes.com/feed.xml',
+    },
+  },
+  category: 'Jardinagem',
 };
 
 export default function RootLayout({
@@ -117,7 +147,10 @@ export default function RootLayout({
 
   return (
     <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <head />
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body>
         {/* Google Analytics */}
         <Script
@@ -165,12 +198,12 @@ export default function RootLayout({
         <div className="site-mobile-navigation"></div>
         <div className="site-wrapper shadow-wrapper">
           {/* Header */}
-          <header id="site-header" className="site-header">
+          <header id="site-header" className="site-header" role="banner">
             <div className="site-header-top">
               <div className="site-container">
                 <div className="site-row">
                   <div className="site-header-top-left site-column-9">
-                    <nav className="primary-navigation" id="primary-navigation">
+                    <nav className="primary-navigation" id="primary-navigation" role="navigation" aria-label="Menu Principal">
                       <ul id="menu-menu-cabecalho">
                         <li className="menu-item current-menu-item">
                           <Link href="/">Início</Link>
@@ -229,17 +262,20 @@ export default function RootLayout({
           </header>
 
           {/* Main Content */}
-          {children}
+          <main id="site-main" role="main">
+            {children}
+          </main>
 
           {/* Footer */}
-          <footer id="site-footer" className="site-footer">
+          <footer id="site-footer" className="site-footer" role="contentinfo">
             <div className="site-footer-top">
               <div className="site-container">
                 <div className="site-row">
                   <div className="site-column-4">
                     <div className="widget widget_nav_menu widget-ver">
                       <div className="menu-menu-rodape-container">
-                        <ul id="menu-menu-rodape" className="menu">
+                        <nav aria-label="Menu do Rodapé">
+                          <ul id="menu-menu-rodape" className="menu">
                           <li className="menu-item">
                             <Link href="/politica-de-privacidade">
                               Política de Privacidade
@@ -260,6 +296,7 @@ export default function RootLayout({
                             <Link href="/contato">Contato</Link>
                           </li>
                         </ul>
+                        </nav>
                       </div>
                     </div>
                   </div>
@@ -275,6 +312,9 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
+
+        {/* Cookie Consent Banner */}
+        <CookieConsent />
       </body>
     </html>
   );
