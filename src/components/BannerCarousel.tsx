@@ -65,9 +65,9 @@ export default function BannerCarousel({ posts }: BannerCarouselProps) {
                         <Link href={`/posts/${post.slug}`}>{post.title}</Link>
                       </h2>
                       <span className="banner-text-author">
-                        By{" "}
+                        Por{" "}
                         <Link
-                          href="/author"
+                          href={`/author/${post.authorSlug}`}
                           title={`Posts de ${post.author}`}
                           rel="author"
                         >

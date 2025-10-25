@@ -90,7 +90,7 @@ export default async function Page({ params }: PageProps) {
                                                 </h2>
                                                 <div className="entry-meta">
                                                     <span className="entry-author">
-                                                        By{" "}
+                                                        Por{" "}
                                                         <Link
                                                             href={`/author/${post.authorSlug}`}
                                                             title={`Posts de ${post.author}`}
@@ -100,7 +100,7 @@ export default async function Page({ params }: PageProps) {
                                                         </Link>
                                                     </span>
                                                     <span className="entry-date">
-                                                        {" "}on <Link href="#">{post.date}</Link>
+                                                        {" "}em <time dateTime={post.date}>{post.date}</time>
                                                     </span>
                                                 </div>
                                             </div>
@@ -129,51 +129,8 @@ export default async function Page({ params }: PageProps) {
                                                         title={post.title}
                                                         className="entry-button"
                                                     >
-                                                        Continue Reading
+                                                        Continuar Lendo
                                                     </Link>
-                                                    <div className="entry-social-share">
-                                                        <a
-                                                            href={`https://www.facebook.com/sharer/sharer.php?u=https://newbrightnotes.com/posts/${post.slug}`}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            aria-label="Share on Facebook"
-                                                        >
-                                                            <span>f</span>
-                                                        </a>
-                                                        <a
-                                                            href={`https://twitter.com/intent/tweet?url=https://newbrightnotes.com/posts/${post.slug}&text=${encodeURIComponent(
-                                                                post.title
-                                                            )}`}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            aria-label="Share on Twitter"
-                                                        >
-                                                            <span>𝕏</span>
-                                                        </a>
-                                                        <a
-                                                            href={`https://www.linkedin.com/shareArticle?mini=true&url=https://newbrightnotes.com/posts/${post.slug}&title=${encodeURIComponent(
-                                                                post.title
-                                                            )}`}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            aria-label="Share on LinkedIn"
-                                                        >
-                                                            <span>in</span>
-                                                        </a>
-                                                        <a
-                                                            href={`https://pinterest.com/pin/create/button/?url=https://newbrightnotes.com/posts/${post.slug}&description=${encodeURIComponent(
-                                                                post.title
-                                                            )}`}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            aria-label="Share on Pinterest"
-                                                        >
-                                                            <span>P</span>
-                                                        </a>
-                                                        <a href="#" aria-label="Comments">
-                                                            <span>💬 0</span>
-                                                        </a>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

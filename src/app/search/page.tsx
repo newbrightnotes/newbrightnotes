@@ -213,7 +213,7 @@ function SearchContent() {
                                                     </h2>
                                                     <div className="entry-meta">
                                                         <span className="entry-author">
-                                                            By{" "}
+                                                            Por{" "}
                                                             <Link
                                                                 href={`/author/${post.authorSlug}`}
                                                                 title={`Posts de ${post.author}`}
@@ -223,7 +223,7 @@ function SearchContent() {
                                                             </Link>
                                                         </span>
                                                         <span className="entry-date">
-                                                            {" "}on <time>{post.date}</time>
+                                                            {" "}em <time dateTime={post.date}>{post.date}</time>
                                                         </span>
                                                     </div>
                                                 </div>

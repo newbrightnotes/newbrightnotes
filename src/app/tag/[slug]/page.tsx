@@ -79,7 +79,7 @@ export default async function TagPage({ params }: TagPageProps) {
                                                 </h2>
                                                 <div className="entry-meta">
                                                     <span className="entry-author">
-                                                        By{" "}
+                                                        Por{" "}
                                                         <Link
                                                             href={`/author/${post.authorSlug}`}
                                                             title={`Posts de ${post.author}`}
@@ -89,7 +89,7 @@ export default async function TagPage({ params }: TagPageProps) {
                                                         </Link>
                                                     </span>
                                                     <span className="entry-date">
-                                                        {" "}on <time>{post.date}</time>
+                                                        {" "}em <time dateTime={post.date}>{post.date}</time>
                                                     </span>
                                                 </div>
                                             </div>
@@ -118,7 +118,7 @@ export default async function TagPage({ params }: TagPageProps) {
                                                         title={post.title}
                                                         className="entry-button"
                                                     >
-                                                        Continue Reading
+                                                        Continuar Lendo
                                                     </Link>
                                                 </div>
                                             </div>

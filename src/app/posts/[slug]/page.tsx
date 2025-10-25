@@ -200,12 +200,12 @@ export default async function PostPage({ params }: PostPageProps) {
                   <h1 className="entry-title">{post.title}</h1>
                   <div className="entry-meta">
                     <span className="entry-author">
-                      By <Link href={`/author/${post.authorSlug}`} title={`Posts de ${post.author}`} rel="author">
+                      Por <Link href={`/author/${post.authorSlug}`} title={`Posts de ${post.author}`} rel="author">
                         {post.author}
                       </Link>
                     </span>
                     <span className="entry-date">
-                      {" "}on <time>{post.date}</time>
+                      {" "}em <time dateTime={post.date}>{post.date}</time>
                     </span>
                   </div>
                 </header>

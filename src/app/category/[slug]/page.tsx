@@ -194,7 +194,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                             </h2>
                             <div className="entry-meta">
                               <span className="entry-author">
-                                By{" "}
+                                Por{" "}
                                 <Link
                                   href={`/author/${post.authorSlug}`}
                                   title={`Posts de ${post.author}`}
@@ -204,7 +204,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                                 </Link>
                               </span>
                               <span className="entry-date">
-                                {" "}on <time>{post.date}</time>
+                                {" "}em <time dateTime={post.date}>{post.date}</time>
                               </span>
                             </div>
                           </div>
@@ -233,48 +233,8 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                                 title={post.title}
                                 className="entry-button"
                               >
-                                Continue Reading
+                                Continuar Lendo
                               </Link>
-                              <div className="entry-social-share">
-                                <a
-                                  href={`https://www.facebook.com/sharer/sharer.php?u=https://newbrightnotes.com/posts/${post.slug}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label="Share on Facebook"
-                                >
-                                  <span className="fa fa-facebook"></span>
-                                </a>
-                                <a
-                                  href={`https://twitter.com/intent/tweet?url=https://newbrightnotes.com/posts/${post.slug}&text=${encodeURIComponent(
-                                    post.title
-                                  )}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label="Share on Twitter"
-                                >
-                                  <span className="fa fa-twitter"></span>
-                                </a>
-                                <a
-                                  href={`https://www.linkedin.com/shareArticle?mini=true&url=https://newbrightnotes.com/posts/${post.slug}&title=${encodeURIComponent(
-                                    post.title
-                                  )}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label="Share on LinkedIn"
-                                >
-                                  <span className="fa fa-linkedin"></span>
-                                </a>
-                                <a
-                                  href={`https://pinterest.com/pin/create/button/?url=https://newbrightnotes.com/posts/${post.slug}&description=${encodeURIComponent(
-                                    post.title
-                                  )}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label="Share on Pinterest"
-                                >
-                                  <span className="fa fa-pinterest-p"></span>
-                                </a>
-                              </div>
                             </div>
                           </div>
                         </div>

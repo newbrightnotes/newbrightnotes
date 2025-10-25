@@ -39,12 +39,12 @@ export default function Home() {
                         </h2>
                         <div className="entry-meta">
                           <span className="entry-author">
-                            By <Link href={`/author/${post.authorSlug}`} title={`Posts de ${post.author}`} rel="author">
+                            Por <Link href={`/author/${post.authorSlug}`} title={`Posts de ${post.author}`} rel="author">
                               {post.author}
                             </Link>
                           </span>
                           <span className="entry-date">
-                            {" "}on <Link href="#">{post.date}</Link>
+                            {" "}em <time dateTime={post.date}>{post.date}</time>
                           </span>
                         </div>
                       </div>
@@ -73,7 +73,7 @@ export default function Home() {
                             title={post.title}
                             className="entry-button"
                           >
-                            Continue Reading
+                            Continuar Lendo
                           </Link>
                         </div>
                       </div>
