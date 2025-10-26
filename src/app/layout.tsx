@@ -7,6 +7,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./globals.css";
 import MobileNav from "@/components/MobileNav";
 import CookieConsent from "@/components/CookieConsent";
+import ConsentManager from "@/components/ConsentManager";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -157,6 +159,9 @@ export default function RootLayout({
         <meta name="google-adsense-account" content="ca-pub-8502616335999449" />
       </head>
       <body>
+        {/* Consent Manager - DEVE carregar PRIMEIRO para configurar Consent Mode v2 */}
+        <ConsentManager />
+
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=GT-NMDMW88Q"
@@ -320,6 +325,9 @@ export default function RootLayout({
 
         {/* Cookie Consent Banner */}
         <CookieConsent />
+
+        {/* Cookie Settings Button - Permite revisitar escolha */}
+        <CookieSettingsButton />
       </body>
     </html>
   );
