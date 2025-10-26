@@ -34,11 +34,19 @@ export default function ContactForm() {
         setStatus("loading");
 
         try {
-            // Simulate API call - replace with actual email service integration
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-            // Here you would send the form data to your backend/email service
-            console.log("Contact form submission:", formData);
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Erro ao enviar mensagem');
+            }
 
             setStatus("success");
             setStatusMessage("Mensagem enviada com sucesso! Responderemos em breve.");
@@ -55,7 +63,7 @@ export default function ContactForm() {
             }, 5000);
         } catch (error) {
             setStatus("error");
-            setStatusMessage("Erro ao enviar mensagem. Tente novamente ou envie para nosso email.");
+            setStatusMessage(error instanceof Error ? error.message : "Erro ao enviar mensagem. Tente novamente ou envie para nosso email.");
             console.error("Contact form error:", error);
         }
     };
