@@ -154,6 +154,7 @@ export default function RootLayout({
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google-adsense-account" content="ca-pub-8502616335999449" />
       </head>
       <body>
         {/* Google Analytics */}
@@ -172,7 +173,7 @@ export default function RootLayout({
 
         {/* Google AdSense */}
         <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6026700286776312"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8502616335999449"
           strategy="afterInteractive"
           crossOrigin="anonymous"
         />
