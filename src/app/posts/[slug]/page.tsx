@@ -115,7 +115,7 @@ export default async function PostPage({ params }: PostPageProps) {
       name: "New Bright Notes",
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/images/cropped-LOGOTIPO-2.png`,
+        url: `${siteUrl}/images/logo.png`,
       },
     },
     description: post.excerpt,

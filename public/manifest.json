@@ -9,13 +9,13 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/images/cropped-LOGOTIPO-2.png",
+      "src": "/images/logo.png",
       "sizes": "150x49",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/images/cropped-LOGOTIPO-2.png",
+      "src": "/images/logo.png",
       "sizes": "150x49",
       "type": "image/png",
       "purpose": "maskable"

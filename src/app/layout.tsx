@@ -41,6 +41,15 @@ export const metadata: Metadata = {
   creator: "New Bright Notes",
   publisher: "New Bright Notes",
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/images/logo.png", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/images/logo.png", type: "image/png" },
+    ],
+  },
   robots: {
     index: true,
     follow: true,
@@ -61,7 +70,7 @@ export const metadata: Metadata = {
     description: "Aprenda a criar jardins verticais comestíveis em apartamentos. Dicas práticas de cultivo urbano, hortas em varandas e paredes.",
     images: [
       {
-        url: "/images/cropped-LOGOTIPO-2.png",
+        url: "/images/logo.png",
         width: 1200,
         height: 630,
         alt: "New Bright Notes - Jardins Verticais",
@@ -73,7 +82,7 @@ export const metadata: Metadata = {
     title: "New Bright Notes - Jardins Verticais e Jardinagem Urbana",
     description: "Aprenda a criar jardins verticais comestíveis em apartamentos. Dicas práticas de cultivo urbano, hortas em varandas e paredes.",
     creator: "@newbrightnotes",
-    images: ["/images/cropped-LOGOTIPO-2.png"],
+    images: ["/images/logo.png"],
   },
   verification: {
     google: "SyRIBZUdMgwdfPAOEzd9nDkDLUZxouobkKWxV14SeJ8",
@@ -105,7 +114,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: "New Bright Notes",
     url: siteUrl,
-    logo: `${siteUrl}/images/cropped-LOGOTIPO-2.png`,
+    logo: `${siteUrl}/images/logo.png`,
     description: "Seu guia completo sobre jardins verticais e jardinagem urbana",
     contactPoint: {
       "@type": "ContactPoint",
@@ -127,7 +136,7 @@ export default function RootLayout({
       name: "New Bright Notes",
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/images/cropped-LOGOTIPO-2.png`,
+        url: `${siteUrl}/images/logo.png`,
       },
     },
     potentialAction: {
@@ -242,7 +251,7 @@ export default function RootLayout({
                           <Image
                             width={150}
                             height={49}
-                            src="/images/cropped-LOGOTIPO-2.png"
+                            src="/images/logo.png"
                             className="custom-logo"
                             alt="New Bright Notes"
                           />
