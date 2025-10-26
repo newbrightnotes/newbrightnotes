@@ -43,12 +43,13 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   icons: {
     icon: [
-      { url: "/images/logo.png", type: "image/png" },
+      { url: "/favicon.png", type: "image/png" },
       { url: "/favicon.ico", sizes: "any" },
     ],
     apple: [
-      { url: "/images/logo.png", type: "image/png" },
+      { url: "/favicon.png", type: "image/png" },
     ],
+    shortcut: "/favicon.png",
   },
   robots: {
     index: true,
@@ -71,8 +72,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/logo.png",
-        width: 1200,
-        height: 630,
+        
         alt: "New Bright Notes - Jardins Verticais",
       },
     ],
@@ -249,8 +249,8 @@ export default function RootLayout({
                       <h1 className="site-logo">
                         <Link href="/" className="custom-logo-link" rel="home">
                           <Image
-                            width={150}
-                            height={49}
+                            width={900}
+                            height={294}
                             src="/images/logo.png"
                             className="custom-logo"
                             alt="New Bright Notes"

@@ -633,8 +633,9 @@ body {
 }
 
 .site-logo img {
-  height: 50px;
-  width: auto;
+  height: auto;
+  width: 100px;
+  max-width: 100%;
 }
 
 /* Footer */
