@@ -30,12 +30,37 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
         };
     }
 
+    const siteUrl = 'https://newbrightnotes.com';
+    const authorUrl = `${siteUrl}/author/${author.slug}`;
+
     return {
         title: `${author.name} | New Bright Notes`,
         description: author.bio,
+        alternates: {
+            canonical: authorUrl,
+        },
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
+        },
         openGraph: {
             type: "profile",
-            title: author.name,
+            locale: 'pt_BR',
+            url: authorUrl,
+            siteName: 'New Bright Notes',
+            title: `${author.name} | New Bright Notes`,
+            description: author.bio,
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${author.name} | New Bright Notes`,
             description: author.bio,
         },
     };

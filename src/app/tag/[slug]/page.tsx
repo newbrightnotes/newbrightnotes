@@ -24,13 +24,38 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: TagPageProps): Promise<Metadata> {
     const { slug } = await params;
     const tag = decodeURIComponent(slug);
+    const siteUrl = 'https://newbrightnotes.com';
+    const tagUrl = `${siteUrl}/tag/${encodeURIComponent(tag)}`;
 
     return {
         title: `Tag: ${tag} | New Bright Notes`,
         description: `Explore todos os artigos relacionados a ${tag} no New Bright Notes`,
+        alternates: {
+            canonical: tagUrl,
+        },
         robots: {
             index: true,
             follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
+        },
+        openGraph: {
+            type: 'website',
+            locale: 'pt_BR',
+            url: tagUrl,
+            siteName: 'New Bright Notes',
+            title: `Tag: ${tag} | New Bright Notes`,
+            description: `Explore todos os artigos relacionados a ${tag} no New Bright Notes`,
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `Tag: ${tag} | New Bright Notes`,
+            description: `Explore todos os artigos relacionados a ${tag} no New Bright Notes`,
         },
     };
 }
