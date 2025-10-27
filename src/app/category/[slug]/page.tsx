@@ -104,7 +104,6 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         "@type": "ListItem",
         position: 2,
         name: category.name,
-        item: categoryUrl,
       },
     ],
   };

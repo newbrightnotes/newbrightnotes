@@ -163,7 +163,6 @@ export default async function PostPage({ params }: PostPageProps) {
         "@type": "ListItem",
         position: 3,
         name: post.title,
-        item: postUrl,
       },
     ],
   };

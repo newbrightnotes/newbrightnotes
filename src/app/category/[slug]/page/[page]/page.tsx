@@ -122,7 +122,6 @@ export default async function CategoryPaginatedPage({ params }: CategoryPageProp
         "@type": "ListItem",
         position: 3,
         name: `Página ${pageNumber}`,
-        item: `${categoryUrl}/page/${pageNumber}`,
       },
     ],
   };

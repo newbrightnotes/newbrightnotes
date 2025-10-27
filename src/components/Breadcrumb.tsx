@@ -24,12 +24,16 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         name: "Início",
         item: siteUrl,
       },
-      ...items.map((item, index) => ({
-        "@type": "ListItem",
-        position: index + 2,
-        name: item.label,
-        ...(item.href && { item: `${siteUrl}${item.href}` }),
-      })),
+      ...items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        return {
+          "@type": "ListItem",
+          position: index + 2,
+          name: item.label,
+          // Last item should NOT have 'item' field per Google's requirement
+          ...(!isLast && item.href && { item: `${siteUrl}${item.href}` }),
+        };
+      }),
     ],
   };
 
