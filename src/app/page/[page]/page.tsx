@@ -13,11 +13,13 @@ interface PageProps {
     };
 }
 
-// Generate static params for all pages
+// Generate static params for pages 2+ (page 1 redirects to homepage)
 export async function generateStaticParams() {
     const totalPages = getTotalPages();
-    return Array.from({ length: totalPages }, (_, i) => ({
-        page: (i + 1).toString(),
+    // Only generate pages 2 and onwards to avoid creating /page/1 which intentionally 404s
+    if (totalPages <= 1) return [];
+    return Array.from({ length: totalPages - 1 }, (_, i) => ({
+        page: (i + 2).toString(),
     }));
 }
 
@@ -26,6 +28,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const { page } = await params;
     const pageNumber = parseInt(page);
     const totalPages = getTotalPages();
+
+    // Page 1 should redirect to homepage
+    if (pageNumber === 1) {
+        return {
+            title: "New Bright Notes - Jardins Verticais e Sustentabilidade Urbana",
+            description: "Explore nossa coleção de artigos sobre jardinagem vertical, sustentabilidade e vida urbana",
+        };
+    }
 
     if (isNaN(pageNumber) || pageNumber < 1 || pageNumber > totalPages) {
         return {
@@ -37,11 +47,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: `Página ${pageNumber} | New Bright Notes`,
         description: `Explore nossa coleção de artigos sobre jardinagem vertical, sustentabilidade e vida urbana - Página ${pageNumber}`,
         robots: {
-            index: pageNumber <= 5, // Only index first 5 pages to avoid duplicate content issues
+            index: true,
             follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
         },
         alternates: {
             canonical: `https://newbrightnotes.com/page/${pageNumber}`,
+        },
+        openGraph: {
+            type: 'website',
+            locale: 'pt_BR',
+            url: `https://newbrightnotes.com/page/${pageNumber}`,
+            siteName: 'New Bright Notes',
+            title: `Página ${pageNumber} | New Bright Notes`,
+            description: `Explore nossa coleção de artigos sobre jardinagem vertical, sustentabilidade e vida urbana - Página ${pageNumber}`,
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `Página ${pageNumber} | New Bright Notes`,
+            description: `Explore nossa coleção de artigos sobre jardinagem vertical, sustentabilidade e vida urbana - Página ${pageNumber}`,
         },
     };
 }

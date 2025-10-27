@@ -70,6 +70,16 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Redirects for SEO optimization
+  async redirects() {
+    return [
+      {
+        source: '/page/1',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
