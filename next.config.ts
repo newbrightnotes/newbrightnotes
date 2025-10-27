@@ -78,6 +78,23 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
+      // Fix broken external links
+      {
+        source: '/author',
+        destination: '/author/leandro-guimaraes',
+        permanent: true,
+      },
+      {
+        source: '/\\$',
+        destination: '/',
+        permanent: true,
+      },
+      // Redirect old/broken post URLs to homepage or search
+      {
+        source: '/como-regar-corretamente-um-jardim-vertical-em-apartamento-sem-fazer-bagunca',
+        destination: '/search?q=como+regar+jardim+vertical',
+        permanent: false, // 302 porque não sabemos se esse post vai existir
+      },
     ];
   },
 };
