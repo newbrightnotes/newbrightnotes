@@ -493,7 +493,7 @@ export const authors: Author[] = [
     {
         slug: "leandro-guimaraes",
         name: "Leandro Guimarães",
-        bio: "Especialista em jardinagem urbana e cultivo vertical com mais de 10 anos de experiência. Apaixonado por transformar espaços urbanos em oásis verdes e sustentáveis.",
+        bio: "Especialista em jardinagem urbana e cultivo vertical com mais de 10 anos de experiência transformando espaços reduzidos em oásis verdes produtivos. Engenheiro Agrônomo formado pela ESALQ/USP, pós-graduado em Agroecologia e certificado em Design Permacultural. Pioneiro no Brasil em técnicas de jardinagem vertical comestível adaptadas para apartamentos, já ajudou mais de 5.000 famílias a cultivarem seus próprios alimentos em casa através de workshops, consultorias e conteúdo digital. Colaborador regular em revistas especializadas e palestrante em eventos de sustentabilidade urbana. Criador da metodologia 'Horta Vertical 360°', que maximiza produção em espaços mínimos combinando técnicas tradicionais com inovações tecnológicas. Apaixonado por democratizar o acesso a alimentos frescos e orgânicos, acredita que cada parede pode se tornar uma fonte de nutrição e bem-estar.",
         image: "/images/author-leandro.jpg",
         social: {
             facebook: "https://www.facebook.com/newbrightnotes",

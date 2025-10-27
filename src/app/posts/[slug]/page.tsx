@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { posts, getRelatedPosts } from "@/data/posts";
 import Script from "next/script";
+import AdSenseUnit from "@/components/AdSenseUnit";
 
 interface PostPageProps {
   params: {
@@ -97,32 +98,48 @@ export default async function PostPage({ params }: PostPageProps) {
   // Get related posts
   const relatedPosts = getRelatedPosts(post, 3);
 
-  // JSON-LD structured data for Article
+  // JSON-LD structured data for Article and BlogPosting
   const articleStructuredData = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
-    image: imageUrl,
-    datePublished: new Date().toISOString(),
-    dateModified: new Date().toISOString(),
+    image: {
+      "@type": "ImageObject",
+      url: imageUrl,
+      width: 780,
+      height: 520
+    },
+    datePublished: new Date("2025-05-19").toISOString(),
+    dateModified: new Date("2025-05-19").toISOString(),
     author: {
       "@type": "Person",
       name: post.author,
-      url: `${siteUrl}/author`,
+      url: `${siteUrl}/author/${post.authorSlug}`,
+      description: "Especialista em jardinagem urbana e cultivo vertical"
     },
     publisher: {
       "@type": "Organization",
       name: "New Bright Notes",
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/images/logo.png`,
-      },
+        url: `${siteUrl}/images/logo.png`
+      }
     },
     description: post.excerpt,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": postUrl,
+      "@id": postUrl
     },
+    articleSection: post.category,
+    keywords: post.tags.join(", "),
+    wordCount: post.excerpt.split(" ").length * 10, // Approximate
+    inLanguage: "pt-BR",
+    isFamilyFriendly: true,
+    about: {
+      "@type": "Thing",
+      name: "Jardinagem Vertical",
+      description: "Técnicas e práticas de cultivo vertical para ambientes urbanos"
+    }
   };
 
   // JSON-LD for Breadcrumbs
@@ -224,6 +241,13 @@ export default async function PostPage({ params }: PostPageProps) {
                 <div className="entry-content">
                   {/* Introduction */}
                   <p>{post.excerpt}</p>
+
+                  {/* AdSense In-Article Ad */}
+                  <AdSenseUnit 
+                    format="in-article"
+                    responsive={true}
+                    className="in-article-ad"
+                  />
                   
                   {/* Main Content - Expanded and unique for each category */}
                   {post.categorySlug === "jardinagem-vertical-comestivel" && (

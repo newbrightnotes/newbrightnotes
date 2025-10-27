@@ -36,8 +36,8 @@ export async function POST(request: Request) {
     // Enviar email
     const data = await resend.emails.send({
       from: 'New Bright Notes <onboarding@resend.dev>',
-      to: ['adbot.solutions@gmail.com'], // Email principal (você)
-      replyTo: email, // Responder para o email do usuário
+      to: ['adbot.solutions@gmail.com'],
+      replyTo: email,
       subject: `Contato: ${subjectText}`,
       html: `
         <h2>Nova mensagem de contato</h2>

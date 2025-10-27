@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getPopularPosts, posts, categories, getAllTags } from "@/data/posts";
 import NewsletterForm from "./NewsletterForm";
 import SearchBox from "./SearchBox";
+import AdSenseUnit from "./AdSenseUnit";
 
 export default function Sidebar() {
     const popularPosts = getPopularPosts(5);
@@ -172,32 +173,13 @@ export default function Sidebar() {
                 </ul>
             </div>
 
-            {/* Ad Placeholder Widget */}
+            {/* AdSense Widget */}
             <div className="widget widget_ad">
-                <h3 className="widget-title">Publicidade</h3>
-                <div
-                    style={{
-                        background: '#f7f7f8',
-                        padding: '2rem',
-                        textAlign: 'center',
-                        borderRadius: '4px',
-                        border: '2px dashed #e5e5e9',
-                        minHeight: '250px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: '#999',
-                    }}
-                >
-                    <div>
-                        <p style={{ margin: 0, fontSize: '0.9rem' }}>
-                            Espaço para anúncios
-                        </p>
-                        <p style={{ margin: '0.5rem 0 0', fontSize: '0.8rem' }}>
-                            300 x 250
-                        </p>
-                    </div>
-                </div>
+                <AdSenseUnit 
+                    format="rectangle"
+                    responsive={true}
+                    className="sidebar-ad"
+                />
             </div>
         </aside>
     );

@@ -16,6 +16,8 @@
 # next.js
 /.next/
 /out/
+/.turbo
+/.swc
 
 # production
 /build
@@ -23,6 +25,8 @@
 # misc
 .DS_Store
 *.pem
+.eslintcache
+/.cache/
 
 # debug
 npm-debug.log*
@@ -35,6 +39,10 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# editor settings
+/.idea/
+/.vscode/
 
 # typescript
 *.tsbuildinfo
