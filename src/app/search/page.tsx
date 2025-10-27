@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import { useSearchParams } from "next/navigation";
 import { posts, categories } from "@/data/posts";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -46,8 +47,40 @@ function SearchContent() {
         }
     }, [searchResults, categoryFilter]);
 
+    const siteUrl = "https://newbrightnotes.com";
+
+    // JSON-LD for Breadcrumbs
+    const breadcrumbStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Início",
+                item: siteUrl,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Busca",
+                // Last item should NOT have 'item' field per Google's requirement
+            },
+        ],
+    };
+
     return (
-        <section className="site-main">
+        <>
+            {/* Structured Data */}
+            <Script
+                id="breadcrumb-structured-data"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbStructuredData),
+                }}
+            />
+
+            <section className="site-main">
             <div className="site-container">
                 <div className="site-row">
                     <div className="site-content" id="site-content" role="main">
@@ -266,6 +299,7 @@ function SearchContent() {
                 </div>
             </div>
         </section>
+        </>
     );
 }
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import Breadcrumb from "@/components/Breadcrumb";
 import ContactForm from "@/components/ContactForm";
 
@@ -16,8 +17,40 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const siteUrl = "https://newbrightnotes.com";
+
+  // JSON-LD for Breadcrumbs
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Início",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Contato",
+        // Last item should NOT have 'item' field per Google's requirement
+      },
+    ],
+  };
+
   return (
-    <section className="site-main">
+    <>
+      {/* Structured Data */}
+      <Script
+        id="breadcrumb-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
+
+      <section className="site-main">
       <div className="site-container">
         <div className="site-row">
           <div className="site-content" id="site-content" role="main">
@@ -60,5 +93,6 @@ export default function ContactPage() {
         </div>
       </div>
     </section>
+    </>
   );
 }

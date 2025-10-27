@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getPostsByTag, getAllTags } from "@/data/posts";
 import Breadcrumb from "@/components/Breadcrumb";
 import Sidebar from "@/components/Sidebar";
+import Script from "next/script";
 
 interface TagPageProps {
     params: {
@@ -69,8 +70,71 @@ export default async function TagPage({ params }: TagPageProps) {
         notFound();
     }
 
+    const siteUrl = "https://newbrightnotes.com";
+
+    // JSON-LD for Breadcrumbs
+    const breadcrumbStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Início",
+                item: siteUrl,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Tags",
+                item: `${siteUrl}/tag`,
+            },
+            {
+                "@type": "ListItem",
+                position: 3,
+                name: tag,
+                // Last item should NOT have 'item' field per Google's requirement
+            },
+        ],
+    };
+
+    // JSON-LD for Collection
+    const collectionStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: `Tag: ${tag}`,
+        description: `Explore todos os artigos relacionados a ${tag} no New Bright Notes`,
+        url: `${siteUrl}/tag/${encodeURIComponent(tag)}`,
+        mainEntity: {
+            "@type": "ItemList",
+            itemListElement: tagPosts.map((post, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `${siteUrl}/posts/${post.slug}`,
+                name: post.title,
+            })),
+        },
+    };
+
     return (
-        <section className="site-main with-right-sidebar">
+        <>
+            {/* Structured Data */}
+            <Script
+                id="breadcrumb-structured-data"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbStructuredData),
+                }}
+            />
+            <Script
+                id="collection-structured-data"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(collectionStructuredData),
+                }}
+            />
+
+            <section className="site-main with-right-sidebar">
             <div className="site-container">
                 <div className="site-row">
                     <div className="site-content compact-view with-sidebar" id="site-content" role="main">
@@ -157,5 +221,6 @@ export default async function TagPage({ params }: TagPageProps) {
                 </div>
             </div>
         </section>
+        </>
     );
 }

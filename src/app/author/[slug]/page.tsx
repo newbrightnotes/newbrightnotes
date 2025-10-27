@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { authors, getPostsByAuthor } from "@/data/posts";
 import Breadcrumb from "@/components/Breadcrumb";
 import Sidebar from "@/components/Sidebar";
+import Script from "next/script";
 
 interface AuthorPageProps {
     params: {
@@ -76,8 +77,91 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
 
     const authorPosts = getPostsByAuthor(slug);
 
+    const siteUrl = "https://newbrightnotes.com";
+
+    // JSON-LD for Breadcrumbs
+    const breadcrumbStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Início",
+                item: siteUrl,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Autor",
+                item: `${siteUrl}/author`,
+            },
+            {
+                "@type": "ListItem",
+                position: 3,
+                name: author.name,
+                // Last item should NOT have 'item' field per Google's requirement
+            },
+        ],
+    };
+
+    // JSON-LD for Person/ProfilePage
+    const profileStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        mainEntity: {
+            "@type": "Person",
+            name: author.name,
+            description: author.bio,
+            url: `${siteUrl}/author/${author.slug}`,
+            ...(author.image && { image: `${siteUrl}${author.image}` }),
+        },
+    };
+
+    // JSON-LD for Collection of posts
+    const collectionStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: `Artigos de ${author.name}`,
+        description: `Todos os artigos escritos por ${author.name}`,
+        url: `${siteUrl}/author/${author.slug}`,
+        mainEntity: {
+            "@type": "ItemList",
+            itemListElement: authorPosts.map((post, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `${siteUrl}/posts/${post.slug}`,
+                name: post.title,
+            })),
+        },
+    };
+
     return (
-        <section className="site-main with-right-sidebar">
+        <>
+            {/* Structured Data */}
+            <Script
+                id="breadcrumb-structured-data"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbStructuredData),
+                }}
+            />
+            <Script
+                id="profile-structured-data"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(profileStructuredData),
+                }}
+            />
+            <Script
+                id="collection-structured-data"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(collectionStructuredData),
+                }}
+            />
+
+            <section className="site-main with-right-sidebar">
             <div className="site-container">
                 <div className="site-row">
                     <div className="site-content compact-view with-sidebar" id="site-content" role="main">
@@ -239,5 +323,6 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                 </div>
             </div>
         </section>
+        </>
     );
 }
