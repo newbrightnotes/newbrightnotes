@@ -6,6 +6,13 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contato",
   description: "Entre em contato com o New Bright Notes. Estamos aqui para ajudar com suas dúvidas sobre jardins verticais.",
+  alternates: {
+    canonical: 'https://newbrightnotes.com/contato',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function ContactPage() {

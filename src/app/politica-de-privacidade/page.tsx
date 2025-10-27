@@ -4,6 +4,13 @@ import Breadcrumb from "@/components/Breadcrumb";
 export const metadata: Metadata = {
   title: "Política de Privacidade",
   description: "Política de Privacidade do New Bright Notes",
+  alternates: {
+    canonical: 'https://newbrightnotes.com/politica-de-privacidade',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function PrivacyPolicyPage() {

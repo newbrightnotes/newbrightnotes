@@ -4,6 +4,13 @@ import Breadcrumb from "@/components/Breadcrumb";
 export const metadata: Metadata = {
   title: "Termos de Uso",
   description: "Termos de Uso do New Bright Notes",
+  alternates: {
+    canonical: 'https://newbrightnotes.com/termos-de-uso',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function TermsPage() {

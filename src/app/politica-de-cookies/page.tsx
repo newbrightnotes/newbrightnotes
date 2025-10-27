@@ -4,6 +4,13 @@ import Breadcrumb from "@/components/Breadcrumb";
 export const metadata: Metadata = {
   title: "Política de Cookies",
   description: "Política de Cookies do New Bright Notes",
+  alternates: {
+    canonical: 'https://newbrightnotes.com/politica-de-cookies',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function CookiePolicyPage() {

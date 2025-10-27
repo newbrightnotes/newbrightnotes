@@ -4,6 +4,13 @@ import Breadcrumb from "@/components/Breadcrumb";
 export const metadata: Metadata = {
   title: "Sobre Nós",
   description: "Conheça o New Bright Notes - seu guia completo sobre jardins verticais e jardinagem urbana.",
+  alternates: {
+    canonical: 'https://newbrightnotes.com/sobre-nos',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function AboutPage() {
